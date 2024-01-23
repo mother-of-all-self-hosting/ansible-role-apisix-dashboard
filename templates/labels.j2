@@ -1,0 +1,57 @@
+{% if apisix_dashboard_container_labels_traefik_enabled %}
+traefik.enable=true
+
+{% if apisix_dashboard_container_labels_traefik_docker_network %}
+traefik.docker.network={{ apisix_dashboard_container_labels_traefik_docker_network }}
+{% endif %}
+
+traefik.http.services.{{ apisix_dashboard_identifier }}.loadbalancer.server.port={{ apisix_dashboard_config_conf_listen_port }}
+
+############################################################
+#                                                          #
+# Web                                                      #
+#                                                          #
+############################################################
+
+{% set middlewares = apisix_dashboard_container_labels_middlewares %}
+
+{% if apisix_dashboard_container_labels_path_prefix != '/' %}
+traefik.http.middlewares.{{ apisix_dashboard_identifier }}-slashless-redirect.redirectregex.regex=^({{ apisix_dashboard_container_labels_path_prefix | quote }})$
+traefik.http.middlewares.{{ apisix_dashboard_identifier }}-slashless-redirect.redirectregex.replacement=${1}/
+{% set middlewares = middlewares + [apisix_dashboard_identifier + '-slashless-redirect'] %}
+{% endif %}
+
+{% if apisix_dashboard_container_labels_path_prefix != '/' %}
+traefik.http.middlewares.{{ apisix_dashboard_identifier }}-strip-prefix.stripprefix.prefixes={{ apisix_dashboard_container_labels_path_prefix }}
+{% set middlewares = middlewares + [apisix_dashboard_identifier + '-strip-prefix'] %}
+{% endif %}
+
+traefik.http.routers.{{ apisix_dashboard_identifier }}.rule={{ apisix_dashboard_container_labels_rule }}
+
+{% if apisix_dashboard_container_labels_priority | int > 0 %}
+traefik.http.routers.{{ apisix_dashboard_identifier }}.priority={{ apisix_dashboard_container_labels_priority }}
+{% endif %}
+
+traefik.http.routers.{{ apisix_dashboard_identifier }}.service={{ apisix_dashboard_identifier }}
+
+{% if middlewares | length > 0 %}
+traefik.http.routers.{{ apisix_dashboard_identifier }}.middlewares={{ middlewares | join(',') }}
+{% endif %}
+
+traefik.http.routers.{{ apisix_dashboard_identifier }}.entrypoints={{ apisix_dashboard_container_labels_entrypoints }}
+
+traefik.http.routers.{{ apisix_dashboard_identifier }}.tls={{ apisix_dashboard_container_labels_tls | to_json }}
+{% if apisix_dashboard_container_labels_tls %}
+traefik.http.routers.{{ apisix_dashboard_identifier }}.tls.certResolver={{ apisix_dashboard_container_labels_tls_certResolver }}
+{% endif %}
+
+############################################################
+#                                                          #
+# /Web                                                     #
+#                                                          #
+############################################################
+
+
+{% endif %}
+
+{{ apisix_dashboard_container_labels_additional_labels }}

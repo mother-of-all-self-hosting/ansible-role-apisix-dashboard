@@ -1,0 +1,56 @@
+# This matches the configuration file found at:
+# https://github.com/apache/apisix-dashboard/blob/master/api/conf/conf.yaml
+#
+# To extend or change it, use Ansible variables or `apisix_dashboard_config_extension_yaml`.
+
+conf:
+  listen:
+    host: {{ apisix_dashboard_config_conf_listen_host | to_json }}
+    port: {{ apisix_dashboard_config_conf_listen_port | to_json }}
+
+  allow_list: {{ apisix_dashboard_config_conf_allow_list | to_json }}
+
+  etcd:
+    endpoints: {{ apisix_dashboard_config_conf_etcd_endpoints | to_json }}
+    username: {{ apisix_dashboard_config_conf_etcd_username | to_json }}
+    password: {{ apisix_dashboard_config_conf_etcd_password | to_json }}
+    mtls:
+      key_file: ""
+      cert_file: ""
+      ca_file: ""
+    prefix: {{ apisix_dashboard_config_conf_etcd_prefix | to_json }}
+
+  log:
+    error_log:
+      level: {{ apisix_dashboard_config_conf_log_error_log_level | to_json }}
+      file_path: /dev/stderr
+    access_log:
+      file_path: /dev/stdout
+
+  max_cpu: 0
+
+  # security:
+  #   access_control_allow_origin: "http://httpbin.org"
+  #   access_control_allow_credentials: true          # support using custom cors configration
+  #   access_control_allow_headers: "Authorization"
+  #   access_control-allow_methods: "*"
+  #   x_frame_options: "deny"
+  #   content_security_policy: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src xx.xx.xx.xx:3000"  # You can set frame-src to provide content for your grafana panel.
+
+authentication:
+  secret: {{ apisix_dashboard_config_authentication_secret | to_json }}
+  expire_time: {{ apisix_dashboard_config_authentication_expire_time | to_json }}
+  users: {{ apisix_dashboard_config_authentication_users | to_json }}
+
+oidc:
+  enabled: {{ apisix_dashboard_config_oidc_enabled | to_json }}
+  expire_time: {{ apisix_dashboard_config_oidc_expire_time | to_json }}
+  client_id: {{ apisix_dashboard_config_oidc_client_id | to_json }}
+  client_secret: {{ apisix_dashboard_config_oidc_client_secret | to_json }}
+  auth_url: {{ apisix_dashboard_config_oidc_auth_url | to_json }}
+  token_url: {{ apisix_dashboard_config_oidc_token_url | to_json }}
+  user_info_url: {{ apisix_dashboard_config_oidc_user_info_url | to_json }}
+  redirect_url: {{ apisix_dashboard_config_oidc_redirect_url | to_json }}
+  scope: {{ apisix_dashboard_config_oidc_scope | to_json }}
+
+plugins: {{ apisix_dashboard_config_plugins | to_json }}
