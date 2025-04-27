@@ -1,8 +1,19 @@
-# SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+# SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
+
+- name: (Deprecation) Catch and report renamed apisix-dashboard variables
+  ansible.builtin.fail:
+    msg: >-
+      The variable `{{ item.old }}` is deprecated. Please use `{{ item.new }}` instead.
+  when: "item.old in vars"
+  with_items:
+    - {'old': 'apisix_dashboard_systemd_required_systemd_services_list_default', 'new': 'apisix_dashboard_systemd_required_services_list_default'}
+    - {'old': 'apisix_dashboard_systemd_required_systemd_services_list_auto', 'new': 'apisix_dashboard_systemd_required_services_list_auto'}
+    - {'old': 'apisix_dashboard_systemd_required_systemd_services_list_custom', 'new': 'apisix_dashboard_systemd_required_services_list_custom'}
 
 - name: Fail if required APISIX Dashboard settings not defined
   ansible.builtin.fail:
