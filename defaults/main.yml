@@ -13,6 +13,7 @@ apisix_dashboard_identifier: apisix-dashboard
 apisix_dashboard_uid: ''
 apisix_dashboard_gid: ''
 
+# renovate: datasource=docker depName=apache/apisix-dashboard versioning=semver
 apisix_dashboard_version: 3.0.1
 
 apisix_dashboard_scheme: https
