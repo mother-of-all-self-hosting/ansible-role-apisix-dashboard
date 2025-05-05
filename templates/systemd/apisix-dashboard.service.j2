@@ -24,26 +24,26 @@ ExecStartPre=-{{ devture_systemd_docker_base_host_command_sh }} -c '{{ devture_s
 ExecStartPre=-{{ devture_systemd_docker_base_host_command_sh }} -c '{{ devture_systemd_docker_base_host_command_docker }} rm {{ apisix_dashboard_identifier }} 2>/dev/null || true'
 
 ExecStartPre={{ devture_systemd_docker_base_host_command_docker }} create \
-			--rm \
-			--name={{ apisix_dashboard_identifier }} \
-			--log-driver=none \
-			--read-only \
-			--user={{ apisix_dashboard_uid }}:{{ apisix_dashboard_gid }} \
-			--cap-drop=ALL \
-			--network={{ apisix_dashboard_container_network }} \
-			{% if apisix_dashboard_container_http_bind_port %}
-			-p {{ apisix_dashboard_container_http_bind_port }}:{{ apisix_dashboard_config_conf_listen_port }} \
-			{% endif %}
-			--env-file={{ apisix_dashboard_base_path }}/env \
-			--label-file={{ apisix_dashboard_base_path }}/labels \
-			--mount type=bind,src={{ apisix_dashboard_config_path }}/config.yaml,dst=/usr/local/apisix-dashboard/conf/conf.yaml,ro \
-			{% for volume in apisix_dashboard_container_additional_volumes %}
-			--mount type={{ volume.type | default('bind' if '/' in volume.src else 'volume') }},src={{ volume.src }},dst={{ volume.dst }}{{ (',' + volume.options) if volume.options | default('') else '' }} \
-			{% endfor %}
-			{% for arg in apisix_dashboard_container_extra_arguments %}
-			{{ arg }} \
-			{% endfor %}
-			{{ apisix_dashboard_container_image }}
+      --rm \
+      --name={{ apisix_dashboard_identifier }} \
+      --log-driver=none \
+      --read-only \
+      --user={{ apisix_dashboard_uid }}:{{ apisix_dashboard_gid }} \
+      --cap-drop=ALL \
+      --network={{ apisix_dashboard_container_network }} \
+      {% if apisix_dashboard_container_http_bind_port %}
+      -p {{ apisix_dashboard_container_http_bind_port }}:{{ apisix_dashboard_config_conf_listen_port }} \
+      {% endif %}
+      --env-file={{ apisix_dashboard_base_path }}/env \
+      --label-file={{ apisix_dashboard_base_path }}/labels \
+      --mount type=bind,src={{ apisix_dashboard_config_path }}/config.yaml,dst=/usr/local/apisix-dashboard/conf/conf.yaml,ro \
+      {% for volume in apisix_dashboard_container_additional_volumes %}
+      --mount type={{ volume.type | default('bind' if '/' in volume.src else 'volume') }},src={{ volume.src }},dst={{ volume.dst }}{{ (',' + volume.options) if volume.options | default('') else '' }} \
+      {% endfor %}
+      {% for arg in apisix_dashboard_container_extra_arguments %}
+      {{ arg }} \
+      {% endfor %}
+      {{ apisix_dashboard_container_image }}
 
 {% for network in apisix_dashboard_container_additional_networks %}
 ExecStartPre={{ devture_systemd_docker_base_host_command_docker }} network connect {{ network }} {{ apisix_dashboard_identifier }}
