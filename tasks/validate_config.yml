@@ -9,7 +9,7 @@
   ansible.builtin.fail:
     msg: >-
       Your configuration contains a variable, which now has a different name.
-      please change your configuration to rename the variable (`{{ item.old }}` -> `{{ item.new }}`).
+      Please change your configuration to rename the variable (`{{ item.old }}` -> `{{ item.new }}`).
   when: "item.old in vars"
   with_items:
     - {'old': 'apisix_dashboard_systemd_required_systemd_services_list_default', 'new': 'apisix_dashboard_systemd_required_services_list_default'}
