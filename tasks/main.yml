@@ -3,27 +3,25 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
-
 - name: Perform APISIX Dashboard installation tasks
-  block:
-    - name: Validate APISIX Dashboard configuration
-      when: apisix_dashboard_enabled | bool
-      ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
-
-    - name: Install APISIX Dashboard
-      when: apisix_dashboard_enabled | bool
-      ansible.builtin.include_tasks: "{{ role_path }}/tasks/install.yml"
   tags:
     - setup-all
     - setup-apisix-dashboard
     - install-all
     - install-apisix-dashboard
+  block:
+    - name: Validate APISIX Dashboard configuration
+      when: apisix_dashboard_enabled | bool
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
+    - name: Install APISIX Dashboard
+      when: apisix_dashboard_enabled | bool
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/install.yml"
 
 - name: Perform APISIX Dashboard uninstallation tasks
+  tags:
+    - setup-all
+    - setup-apisix-dashboard
   block:
     - name: Uninstall APISIX Dashboard
       when: not apisix_dashboard_enabled | bool
       ansible.builtin.include_tasks: "{{ role_path }}/tasks/uninstall.yml"
-  tags:
-    - setup-all
-    - setup-apisix-dashboard

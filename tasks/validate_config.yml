@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
-
 - name: (Deprecation) Catch and report renamed settings
   ansible.builtin.fail:
     msg: >-
@@ -12,9 +11,9 @@
       Please change your configuration to rename the variable (`{{ item.old }}` -> `{{ item.new }}`).
   when: "item.old in vars"
   with_items:
-    - {'old': 'apisix_dashboard_systemd_required_systemd_services_list_default', 'new': 'apisix_dashboard_systemd_required_services_list_default'}
-    - {'old': 'apisix_dashboard_systemd_required_systemd_services_list_auto', 'new': 'apisix_dashboard_systemd_required_services_list_auto'}
-    - {'old': 'apisix_dashboard_systemd_required_systemd_services_list_custom', 'new': 'apisix_dashboard_systemd_required_services_list_custom'}
+    - { "old": "apisix_dashboard_systemd_required_systemd_services_list_default", "new": "apisix_dashboard_systemd_required_services_list_default" }
+    - { "old": "apisix_dashboard_systemd_required_systemd_services_list_auto", "new": "apisix_dashboard_systemd_required_services_list_auto" }
+    - { "old": "apisix_dashboard_systemd_required_systemd_services_list_custom", "new": "apisix_dashboard_systemd_required_services_list_custom" }
 
 - name: Fail if required APISIX Dashboard settings not defined
   ansible.builtin.fail:
@@ -22,13 +21,13 @@
       You need to define a required configuration setting (`{{ item.name }}`).
   when: "item.when | bool and vars[item.name] == ''"
   with_items:
-    - {'name': 'apisix_dashboard_identifier', 'when': true}
-    - {'name': 'apisix_dashboard_uid', 'when': true}
-    - {'name': 'apisix_dashboard_gid', 'when': true}
-    - {'name': 'apisix_dashboard_hostname', 'when': true}
-    - {'name': 'apisix_dashboard_path_prefix', 'when': true}
-    - {'name': 'apisix_dashboard_container_network', 'when': true}
-    - {'name': 'apisix_dashboard_config_authentication_secret', 'when': true}
+    - { "name": "apisix_dashboard_identifier", "when": true }
+    - { "name": "apisix_dashboard_uid", "when": true }
+    - { "name": "apisix_dashboard_gid", "when": true }
+    - { "name": "apisix_dashboard_hostname", "when": true }
+    - { "name": "apisix_dashboard_path_prefix", "when": true }
+    - { "name": "apisix_dashboard_container_network", "when": true }
+    - { "name": "apisix_dashboard_config_authentication_secret", "when": true }
 
 # We ensure it doesn't end with a slash, because we handle both (slash and no-slash).
 # Knowing that `apisix_dashboard_path_prefix` does not end with a slash
