@@ -4,6 +4,7 @@
 
 ---
 - name: Perform APISIX Dashboard installation tasks
+  when: apisix_dashboard_enabled | bool
   tags:
     - setup-all
     - setup-apisix-dashboard
@@ -11,17 +12,15 @@
     - install-apisix-dashboard
   block:
     - name: Validate APISIX Dashboard configuration
-      when: apisix_dashboard_enabled | bool
       ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
     - name: Install APISIX Dashboard
-      when: apisix_dashboard_enabled | bool
       ansible.builtin.include_tasks: "{{ role_path }}/tasks/install.yml"
 
 - name: Perform APISIX Dashboard uninstallation tasks
+  when: not apisix_dashboard_enabled | bool
   tags:
     - setup-all
     - setup-apisix-dashboard
   block:
     - name: Uninstall APISIX Dashboard
-      when: not apisix_dashboard_enabled | bool
       ansible.builtin.include_tasks: "{{ role_path }}/tasks/uninstall.yml"
