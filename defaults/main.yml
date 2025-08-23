@@ -101,7 +101,10 @@ apisix_dashboard_systemd_required_services_list_auto: []
 apisix_dashboard_systemd_required_services_list_custom: []
 
 # List of systemd services that the APISIX systemd service wants
-apisix_dashboard_systemd_wanted_services_list: []
+apisix_dashboard_systemd_wanted_services_list: "{{ apisix_dashboard_systemd_wanted_services_list_default + apisix_dashboard_systemd_wanted_services_list_auto + apisix_dashboard_systemd_wanted_services_list_custom }}"
+apisix_dashboard_systemd_wanted_services_list_default: []
+apisix_dashboard_systemd_wanted_services_list_auto: []
+apisix_dashboard_systemd_wanted_services_list_custom: []
 
 # Additional environment variables.
 apisix_dashboard_environment_variables_additional_variables: ''
