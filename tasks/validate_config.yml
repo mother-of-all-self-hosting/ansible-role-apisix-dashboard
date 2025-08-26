@@ -29,6 +29,12 @@
     - { "name": "apisix_dashboard_container_network", "when": true }
     - { "name": "apisix_dashboard_config_authentication_secret", "when": true }
 
+- name: Fail if APISIX Dashboard logging level is invalid
+  ansible.builtin.fail:
+    msg: >-
+      apisix_dashboard_config_conf_log_error_log_level must be 'debug', 'info', 'warn', 'error', 'panic', or 'fatal'
+  when: "apisix_dashboard_config_conf_log_error_log_level not in ['debug', 'info', 'warn', 'error', 'panic', 'fatal']"
+
 # We ensure it doesn't end with a slash, because we handle both (slash and no-slash).
 # Knowing that `apisix_dashboard_path_prefix` does not end with a slash
 # ensures we know how to set these routes up without having to do "does it end with a slash" checks elsewhere.

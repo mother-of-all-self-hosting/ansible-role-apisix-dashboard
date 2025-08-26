@@ -138,7 +138,7 @@ apisix_dashboard_config_conf_etcd_password: ''
 apisix_dashboard_config_conf_etcd_prefix: /apisix
 
 # Controls the `log.error_log.level` configuration property.
-# Known values: debug, info, warn, error, panic, fatal
+# Valid values: debug, info, warn, error, panic, fatal
 apisix_dashboard_config_conf_log_error_log_level: warn
 
 # Controls the `authentication.secret` configuration property.
