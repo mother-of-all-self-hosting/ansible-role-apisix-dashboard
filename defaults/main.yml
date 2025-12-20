@@ -92,7 +92,9 @@ apisix_dashboard_container_labels_tls_certResolver: "{{ apisix_dashboard_contain
 apisix_dashboard_container_labels_additional_labels: ''
 
 # A list of extra arguments to pass to the container
-apisix_dashboard_container_extra_arguments: []
+apisix_dashboard_container_extra_arguments: "{{ apisix_dashboard_container_extra_arguments_auto + apisix_dashboard_container_extra_arguments_custom }}"
+apisix_dashboard_container_extra_arguments_auto: []
+apisix_dashboard_container_extra_arguments_custom: []
 
 # List of systemd services that the APISIX systemd service depends on
 apisix_dashboard_systemd_required_services_list: "{{ apisix_dashboard_systemd_required_services_list_default + apisix_dashboard_systemd_required_services_list_auto + apisix_dashboard_systemd_required_services_list_custom }}"
