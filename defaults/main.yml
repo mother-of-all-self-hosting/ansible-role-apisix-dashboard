@@ -106,6 +106,9 @@ apisix_dashboard_systemd_wanted_services_list_default: []
 apisix_dashboard_systemd_wanted_services_list_auto: []
 apisix_dashboard_systemd_wanted_services_list_custom: []
 
+# Specify the timezone
+apisix_dashboard_environment_variables_tz: UTC
+
 # Additional environment variables.
 apisix_dashboard_environment_variables_additional_variables: ''
 
