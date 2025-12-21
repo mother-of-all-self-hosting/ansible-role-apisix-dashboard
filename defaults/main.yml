@@ -18,11 +18,11 @@ apisix_dashboard_config_path: "{{ apisix_dashboard_base_path }}/config"
 # renovate: datasource=docker depName=apache/apisix-dashboard versioning=semver
 apisix_dashboard_version: 3.0.1
 
-apisix_dashboard_uid: ''
-apisix_dashboard_gid: ''
+apisix_dashboard_uid: ""
+apisix_dashboard_gid: ""
 
 # The hostname at which APISIX serves its API dashboard
-apisix_dashboard_hostname: ''
+apisix_dashboard_hostname: ""
 
 apisix_dashboard_scheme: https
 
@@ -42,7 +42,7 @@ apisix_dashboard_container_image_force_pull: "{{ apisix_dashboard_container_imag
 # Related to `apisix_dashboard_config_conf_listen_port`
 #
 # Takes an "<ip>:<port>" value (e.g. "127.0.0.1:9000"), just a port number or an empty string to not expose.
-apisix_dashboard_container_http_bind_port: ''
+apisix_dashboard_container_http_bind_port: ""
 
 # The base container network. It will be auto-created by this role if it doesn't exist already.
 apisix_dashboard_container_network: "{{ apisix_dashboard_identifier }}"
@@ -115,7 +115,7 @@ apisix_dashboard_systemd_wanted_services_list_custom: []
 apisix_dashboard_environment_variables_tz: UTC
 
 # Additional environment variables.
-apisix_dashboard_environment_variables_additional_variables: ''
+apisix_dashboard_environment_variables_additional_variables: ""
 
 # Controls the `conf.listen.host` configuration property
 apisix_dashboard_config_conf_listen_host: '0.0.0.0'
@@ -136,10 +136,10 @@ apisix_dashboard_config_conf_allow_list: []
 apisix_dashboard_config_conf_etcd_endpoints: []
 
 # Controls the `conf.etcd.username` configuration property.
-apisix_dashboard_config_conf_etcd_username: ''
+apisix_dashboard_config_conf_etcd_username: ""
 
 # Controls the `conf.etcd.password` configuration property.
-apisix_dashboard_config_conf_etcd_password: ''
+apisix_dashboard_config_conf_etcd_password: ""
 
 # Controls the `conf.etcd.prefix` configuration property.
 # It specifies APISIX's prefix in etcd.
@@ -151,7 +151,7 @@ apisix_dashboard_config_conf_log_error_log_level: warn
 
 # Controls the `authentication.secret` configuration property.
 # Secret for JWT token generation.
-apisix_dashboard_config_authentication_secret: ''
+apisix_dashboard_config_authentication_secret: ""
 
 # Controls the `authentication.expire_time` configuration property.
 # JWT token expiration time, in seconds.
@@ -178,22 +178,22 @@ apisix_dashboard_config_oidc_enabled: false
 apisix_dashboard_config_oidc_expire_time: 3600
 
 # Controls the `oidc.client_id` configuration property.
-apisix_dashboard_config_oidc_client_id: ''
+apisix_dashboard_config_oidc_client_id: ""
 
 # Controls the `oidc.client_secret` configuration property.
-apisix_dashboard_config_oidc_client_secret: ''
+apisix_dashboard_config_oidc_client_secret: ""
 
 # Controls the `oidc.auth_url` configuration property.
-apisix_dashboard_config_oidc_auth_url: ''
+apisix_dashboard_config_oidc_auth_url: ""
 
 # Controls the `oidc.token_url` configuration property.
-apisix_dashboard_config_oidc_token_url: ''
+apisix_dashboard_config_oidc_token_url: ""
 
 # Controls the `oidc.user_info_url` configuration property.
-apisix_dashboard_config_oidc_user_info_url: ''
+apisix_dashboard_config_oidc_user_info_url: ""
 
 # Controls the `oidc.redirect_url` configuration property.
-apisix_dashboard_config_oidc_redirect_url: ''
+apisix_dashboard_config_oidc_redirect_url: ""
 
 # Controls the `oidc.scope` configuration property.
 apisix_dashboard_config_oidc_scope: openid
