@@ -94,7 +94,7 @@ apisix_dashboard_container_labels_additional_labels: "{{ apisix_dashboard_contai
 apisix_dashboard_container_labels_additional_labels_auto: {}
 apisix_dashboard_container_labels_additional_labels_custom: {}
 
-# A list of extra arguments to pass to the container
+# A list of extra arguments to pass to the container (`docker create` command)
 apisix_dashboard_container_extra_arguments: "{{ apisix_dashboard_container_extra_arguments_auto + apisix_dashboard_container_extra_arguments_custom }}"
 apisix_dashboard_container_extra_arguments_auto: []
 apisix_dashboard_container_extra_arguments_custom: []
