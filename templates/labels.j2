@@ -60,4 +60,6 @@ traefik.http.routers.{{ apisix_dashboard_identifier }}.tls.certResolver={{ apisi
 
 {% endif %}
 
-{{ apisix_dashboard_container_labels_additional_labels }}
+{% for arg in apisix_dashboard_container_labels_additional_labels %}
+{{ arg }}
+{% endfor %}
