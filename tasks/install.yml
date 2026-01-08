@@ -14,14 +14,6 @@
     - "{{ apisix_dashboard_base_path }}"
     - "{{ apisix_dashboard_config_path }}"
 
-- name: Ensure APISIX Dashboard configuration file installed
-  ansible.builtin.copy:
-    content: "{{ apisix_dashboard_config | to_nice_yaml(indent=2, width=999999) }}"
-    dest: "{{ apisix_dashboard_config_path }}/config.yaml"
-    mode: "0644"
-    owner: "{{ apisix_dashboard_uid }}"
-    group: "{{ apisix_dashboard_gid }}"
-
 - name: Ensure APISIX Dashboard support files installed
   ansible.builtin.template:
     src: "{{ role_path }}/templates/{{ item }}.j2"
@@ -32,6 +24,14 @@
   with_items:
     - env
     - labels
+
+- name: Ensure APISIX Dashboard configuration file installed
+  ansible.builtin.copy:
+    content: "{{ apisix_dashboard_config | to_nice_yaml(indent=2, width=999999) }}"
+    dest: "{{ apisix_dashboard_config_path }}/config.yaml"
+    mode: "0644"
+    owner: "{{ apisix_dashboard_uid }}"
+    group: "{{ apisix_dashboard_gid }}"
 
 - name: Ensure APISIX Dashboard container image is pulled via community.docker.docker_image
   when: devture_systemd_docker_base_container_image_pull_method == 'ansible-module'
