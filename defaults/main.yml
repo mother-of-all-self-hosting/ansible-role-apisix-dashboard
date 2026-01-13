@@ -21,10 +21,11 @@ apisix_dashboard_version: 3.0.1
 apisix_dashboard_uid: ""
 apisix_dashboard_gid: ""
 
+# The scheme used for serving APISIX API dashboard.
+apisix_dashboard_scheme: https
+
 # The hostname at which APISIX serves its API dashboard
 apisix_dashboard_hostname: ""
-
-apisix_dashboard_scheme: https
 
 # The path at which APISIX serves its API dashboard.
 # This value must either be `/` or not end with a slash (e.g. `/apisix`).
