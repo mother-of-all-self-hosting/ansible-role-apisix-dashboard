@@ -41,11 +41,11 @@ apisix_dashboard_container_image_force_pull: "{{ apisix_dashboard_container_imag
 # The base container network. It will be auto-created by this role if it doesn't exist already.
 apisix_dashboard_container_network: "{{ apisix_dashboard_identifier }}"
 
-# Specifies how the container publishes its HTTP port.
+# Specify how the container publishes its HTTP port.
 #
 # Related to `apisix_dashboard_config_conf_listen_port`
 #
-# Takes an "<ip>:<port>" value (e.g. "127.0.0.1:9000"), just a port number or an empty string to not expose.
+# Takes an "<ip>:<port>" or "<port>" value (e.g. "127.0.0.1:9000"), just a port number or an empty string to not expose.
 apisix_dashboard_container_http_bind_port: ""
 
 # A list of additional container networks that the container would be connected to.
