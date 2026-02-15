@@ -41,6 +41,9 @@ apisix_dashboard_container_image_force_pull: "{{ apisix_dashboard_container_imag
 # The base container network. It will be auto-created by this role if it doesn't exist already.
 apisix_dashboard_container_network: "{{ apisix_dashboard_identifier }}"
 
+# Control if the container network is deleted on uninstalling.
+apisix_dashboard_container_network_deletion_enabled: true
+
 # Specify how the container publishes its HTTP port.
 #
 # Related to `apisix_dashboard_config_conf_listen_port`
